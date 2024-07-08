@@ -1,6 +1,6 @@
 using Bookify.Domain.Abstractions;
 
-namespace Bookify.Domain.Entities.Apartments;
+namespace Bookify.Domain.Apartments;
 
 public sealed class Apartment : Entity
 {
