@@ -22,7 +22,7 @@ internal sealed class ReserveBookingCommandHandler : ICommandHandler<ReserveBook
         IBookingRepository bookingRepository,
         IUnitOfWork unitOfWork,
         PricingService pricingService, IDatetimeProvider datetimeProvider)
-    { 
+    {
         _userRepository = userRepository;
         _apartmentRepository = apartmentRepository;
         _bookingRepository = bookingRepository;
@@ -50,6 +50,6 @@ internal sealed class ReserveBookingCommandHandler : ICommandHandler<ReserveBook
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return booking.Id; 
+        return booking.Id;
     }
 }
