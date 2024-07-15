@@ -1,0 +1,6 @@
+﻿services:
+  bookify.api:
+    image: bookify.api
+    build:
+      context: .
+      dockerfile: src/Bookify.Api/Dockerfile
