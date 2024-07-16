@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookify.Domain", "src\Booki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookify.Application", "src\Bookify.Application\Bookify.Application.csproj", "{AC493A85-F56A-4652-A3A0-FA0BA600018A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookify.Infrastructure", "src\Bookify.Infrastructure\Bookify.Infrastructure.csproj", "{C35E55AA-C586-44D7-AB54-0C0ED3C006EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookify.Api", "src\Bookify.Api\Bookify.Api.csproj", "{FEE06E3F-4A09-41F4-876D-29AAE9D2BF78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +26,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9151F094-9BA8-4074-9E96-D2C583778FCC} = {351AC99C-597A-41C3-BE75-51DB347DB22C}
 		{AC493A85-F56A-4652-A3A0-FA0BA600018A} = {351AC99C-597A-41C3-BE75-51DB347DB22C}
+		{C35E55AA-C586-44D7-AB54-0C0ED3C006EF} = {351AC99C-597A-41C3-BE75-51DB347DB22C}
+		{FEE06E3F-4A09-41F4-876D-29AAE9D2BF78} = {351AC99C-597A-41C3-BE75-51DB347DB22C}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9151F094-9BA8-4074-9E96-D2C583778FCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -32,5 +38,13 @@ Global
 		{AC493A85-F56A-4652-A3A0-FA0BA600018A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC493A85-F56A-4652-A3A0-FA0BA600018A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC493A85-F56A-4652-A3A0-FA0BA600018A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C35E55AA-C586-44D7-AB54-0C0ED3C006EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C35E55AA-C586-44D7-AB54-0C0ED3C006EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C35E55AA-C586-44D7-AB54-0C0ED3C006EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C35E55AA-C586-44D7-AB54-0C0ED3C006EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE06E3F-4A09-41F4-876D-29AAE9D2BF78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE06E3F-4A09-41F4-876D-29AAE9D2BF78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE06E3F-4A09-41F4-876D-29AAE9D2BF78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE06E3F-4A09-41F4-876D-29AAE9D2BF78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
