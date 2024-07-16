@@ -13,12 +13,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Bookify.Application\Bookify.Application.csproj" />
       <ProjectReference Include="..\Bookify.Infrastructure\Bookify.Infrastructure.csproj" />
     </ItemGroup>
