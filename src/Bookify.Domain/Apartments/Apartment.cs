@@ -21,12 +21,13 @@ public sealed class Apartment : Entity
         CleaningFee = cleaningFee;
         Amenities = amenities;
     }
+    private Apartment(){}
 
-    public Name Name { get; private set; }
-    public Description Description { get; private set; }
-    public Address Address { get; private set; }
-    public Money Price { get; private set; }
-    public Money CleaningFee { get; private set; }
+    public Name Name { get; private set; } = null!;
+    public Description Description { get; private set; } = null!;
+    public Address Address { get; private set; } = null!;
+    public Money Price { get; private set; } = null!;
+    public Money CleaningFee { get; private set; } = null!;
     public DateTime? LastBookedOnUtc { get; internal set; }
-    public List<Amenity> Amenities { get; private set; }
+    public List<Amenity> Amenities { get; private set; } = null!;
 }

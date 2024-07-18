@@ -1,0 +1,9 @@
+﻿version: '3.4'
+
+services:
+  bookify.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=80
+    ports:
+      - "5092:80"

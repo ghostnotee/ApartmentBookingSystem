@@ -15,6 +15,7 @@ public sealed class Review : Entity
         Comment = comment;
         CreatedOnUtc = createdOnUtc;
     }
+    private Review(){}
 
     public Guid ApartmentId { get; private set; }
 
@@ -22,9 +23,9 @@ public sealed class Review : Entity
 
     public Guid UserId { get; private set; }
 
-    public Rating Rating { get; private set; }
+    public Rating Rating { get; private set; } = null!;
 
-    public Comment Comment { get; private set; }
+    public Comment Comment { get; private set; } = null!;
 
     public DateTime CreatedOnUtc { get; private set; }
 
