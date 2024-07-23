@@ -24,9 +24,7 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
         try
         {
             var result = await base.SaveChangesAsync(cancellationToken);
-
             await PublishDomainEventsAsync();
-
             return result;
         }
         catch (DbUpdateConcurrencyException ex)
@@ -43,9 +41,7 @@ public sealed class ApplicationDbContext : DbContext, IUnitOfWork
             .SelectMany(entity =>
             {
                 var domainEvents = entity.GetDomainEvents();
-
                 entity.ClearDomainEvents();
-
                 return domainEvents;
             })
             .ToList();
