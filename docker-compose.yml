@@ -1,6 +1,4 @@
-﻿version: '3.4'
-
-services:
+﻿services:
   bookify.api:
     image: bookifyapi
     container_name: Bookify.Api
