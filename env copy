@@ -1,0 +1,17 @@
+ENVIRONMENT=development
+HTTPPORT=http://+:80
+URL=http://+:80
+POSTGRESSQL=Host=bookify-db;Port=5432;Database=bookify;Username=postgres;Password=postgres;
+#Auth
+AUDIENCE=account
+ISSUER=http://bookify-idp:8080/realms/bookify
+METADATAURL=http://bookify-idp:8080/realms/bookify/.well-known/openid-configuration
+REQUIREHTTPSMETADATA=false
+#Keycloak
+KEYCLOAKBASEURL=http://bookify-idp:8080
+KEYCLOAKADMINURL=http://bookify-idp:8080/admin/realms/bookify/
+KEYCLOAKTOKENURL=http://bookify-idp:8080/realms/bookify/protocol/openid-connect/token
+KEYCLOAKADMINCLIENTID=bookify-admin-client
+KEYCLOAKADMINCLIENTSECRET=UZDmbNxWmV4TlpaCRcju6pMRsyuV3er1
+KEYCLOAKAUTHCLIENTID=bookify-auth-client
+KEYCLOAKAUTHCLIENTSECRET=3E3yvXaYppoYBF3Ir6DgtEzADKKzSurZ
