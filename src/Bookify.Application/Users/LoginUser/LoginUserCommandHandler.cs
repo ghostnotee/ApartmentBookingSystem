@@ -17,8 +17,6 @@ internal sealed class LoginUserCommandHandler : ICommandHandler<LogInUserCommand
     public async Task<Result<AccessTokenResponse>> Handle(LogInUserCommand request, CancellationToken cancellationToken)
     {
         var result = await _jwtService.GetAccessTokenAsync(request.Email, request.Password, cancellationToken);
-        if (result.IsFailure)
-            return Result.Failure<AccessTokenResponse>(UserErrors.InvalidCredentials);
-        return new AccessTokenResponse(result.Value);
+        return result.IsFailure ? Result.Failure<AccessTokenResponse>(UserErrors.InvalidCredentials) : new AccessTokenResponse(result.Value);
     }
 }
