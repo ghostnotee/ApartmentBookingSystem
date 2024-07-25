@@ -1,9 +1,20 @@
-﻿version: '3.4'
-
-services:
+﻿services:
   bookify.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=80
+      - ASPNETCORE_ENVIRONMENT=${ENVIRONMENT}
+      - ASPNETCORE_HTTP_PORTS=${HTTPPORT}
+      - ASPNETCORE_URLS=${URL}
+      - ConnectionStrings:Database=${POSTGRESSQL}
+      - Authentication:Audience=${AUDIENCE}
+      - Authentication:ValidIssuer=${ISSUER}
+      - Authentication:MetadataUrl=${METADATAURL}
+      - Authentication:RequireHttpsMetadata=${REQUIREHTTPSMETADATA}
+      - Keycloak:BaseUrl=${KEYCLOAKBASEURL}
+      - Keycloak:AdminUrl=${KEYCLOAKADMINURL}
+      - Keycloak:TokenUrl=${KEYCLOAKTOKENURL}
+      - Keycloak:AdminClientId=${KEYCLOAKADMINCLIENTID}
+      - Keycloak:AdminClientSecret=${KEYCLOAKADMINCLIENTSECRET}
+      - Keycloak:AuthClientId=${KEYCLOAKAUTHCLIENTID}
+      - Keycloak:AuthClientSecret=${KEYCLOAKAUTHCLIENTSECRET}
     ports:
       - "5092:80"
