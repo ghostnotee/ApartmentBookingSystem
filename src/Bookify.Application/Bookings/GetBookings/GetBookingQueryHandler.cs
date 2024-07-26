@@ -1,6 +1,8 @@
+using Bookify.Application.Abstractions.Authentication;
 using Bookify.Application.Abstractions.Data;
 using Bookify.Application.Abstractions.Messaging;
 using Bookify.Domain.Abstractions;
+using Bookify.Domain.Bookings;
 using Dapper;
 
 namespace Bookify.Application.Bookings.GetBookings;
@@ -8,10 +10,12 @@ namespace Bookify.Application.Bookings.GetBookings;
 internal sealed class GetBookingQueryHandler : IQueryHandler<GetBookingQuery, BookingResponse>
 {
     private readonly ISqlConnectionFactory _sqlConnectionFactory;
+    private readonly IUserContext _userContext;
 
-    public GetBookingQueryHandler(ISqlConnectionFactory sqlConnectionFactory)
+    public GetBookingQueryHandler(ISqlConnectionFactory sqlConnectionFactory, IUserContext userContext)
     {
         _sqlConnectionFactory = sqlConnectionFactory;
+        _userContext = userContext;
     }
 
     public async Task<Result<BookingResponse>> Handle(GetBookingQuery request, CancellationToken cancellationToken)
@@ -19,9 +23,10 @@ internal sealed class GetBookingQueryHandler : IQueryHandler<GetBookingQuery, Bo
         using var connection = _sqlConnectionFactory.CreateConnection();
 
         const string sql = $"""
-                            SELECT AS Id,
-                            apartment_id AS ApartmentId,
-                            user_id AS UserId,
+                            SELECT
+                                id AS Id,
+                                apartment_id AS ApartmentId,
+                                user_id AS UserId,
                                 status AS Status,
                                 price_for_period_amount AS PriceAmount,
                                 price_for_period_currency AS PriceCurrency,
@@ -37,13 +42,11 @@ internal sealed class GetBookingQueryHandler : IQueryHandler<GetBookingQuery, Bo
                             FROM bookings
                             WHERE id = @BookingId
                             """;
-        
-        var booking = await connection.QueryFirstOrDefaultAsync<BookingResponse>(
-            sql,
-            new
-            {
-                request.BookingId
-            });
-        return booking; 
+
+        var booking = await connection.QueryFirstOrDefaultAsync<BookingResponse>(sql, new { request.BookingId });
+        if (booking is null || booking.UserId != _userContext.UserId)
+            return Result.Failure<BookingResponse>(BookingErrors.NotFound);
+
+        return booking;
     }
 }
