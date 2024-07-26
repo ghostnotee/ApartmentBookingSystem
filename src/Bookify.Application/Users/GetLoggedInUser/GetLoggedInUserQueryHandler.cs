@@ -21,15 +21,15 @@ internal sealed class GetLoggedInUserQueryHandler : IQueryHandler<GetLoggedInUse
     {
         using var connection = _sqlConnectionFactory.CreateConnection();
 
-        const string sql = """
-                           SELECT
-                               id AS Id,
-                               first_name AS FirstName,
-                               last_name AS LastName,
-                               email AS Email
-                           FROM users
-                           WHERE identity_id = @IdentityId
-                           """;
+        const string sql = $"""
+                            SELECT
+                                id AS Id,
+                                first_name AS FirstName,
+                                last_name AS LastName,
+                                email AS Email
+                            FROM users
+                            WHERE identity_id = @IdentityId
+                            """;
 
         var user = await connection.QuerySingleAsync<UserResponse>(sql, new { _userContext.IdentityId });
         
