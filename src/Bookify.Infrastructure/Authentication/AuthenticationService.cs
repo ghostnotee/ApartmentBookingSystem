@@ -16,10 +16,7 @@ internal sealed class AuthenticationService : IAuthenticationService
         _httpClient = httpClient;
     }
 
-    public async Task<string> RegisterAsync(
-        User user,
-        string password,
-        CancellationToken cancellationToken = default)
+    public async Task<string> RegisterAsync(User user, string password, CancellationToken cancellationToken = default)
     {
         var userRepresentationModel = UserRepresentationModel.FromUser(user);
 
@@ -36,8 +33,7 @@ internal sealed class AuthenticationService : IAuthenticationService
         return ExtractIdentityIdFromLocationHeader(response);
     }
 
-    private static string ExtractIdentityIdFromLocationHeader(
-        HttpResponseMessage httpResponseMessage)
+    private static string ExtractIdentityIdFromLocationHeader(HttpResponseMessage httpResponseMessage)
     {
         const string usersSegmentName = "users/";
         var locationHeader = httpResponseMessage.Headers.Location?.PathAndQuery;
