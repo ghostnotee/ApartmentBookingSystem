@@ -21,6 +21,7 @@ public class UsersController(ISender sender) : ControllerBase
     }
 
     [AllowAnonymous]
+    [HttpPost("login")]
     public async Task<IActionResult> Login(LogInUserRequest request, CancellationToken cancellationToken)
     {
         var command = new LogInUserCommand(request.Email, request.Password);
