@@ -16,5 +16,7 @@
       - Keycloak:AdminClientSecret=${KEYCLOAKADMINCLIENTSECRET}
       - Keycloak:AuthClientId=${KEYCLOAKAUTHCLIENTID}
       - Keycloak:AuthClientSecret=${KEYCLOAKAUTHCLIENTSECRET}
+      - Serilog:WriteTo:1:Name=${SEQ_SERVER_NAME}
+      - Serilog:WriteTo:1:Args:serverUrl=${SEQ_SERVER_URL}
     ports:
       - "5092:80"

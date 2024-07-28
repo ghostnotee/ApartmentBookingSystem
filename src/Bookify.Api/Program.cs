@@ -23,6 +23,7 @@ var app = builder.Build();
         //app.SeedData();
     }
     app.UseHttpsRedirection();
+    app.UseRequestContextLogging();
     app.UseSerilogRequestLogging();
     app.UseCustomExceptionHandler();
     app.UseAuthentication();
