@@ -5,6 +5,7 @@
       - ASPNETCORE_HTTP_PORTS=${HTTPPORT}
       - ASPNETCORE_URLS=${URL}
       - ConnectionStrings:Database=${POSTGRESSQL}
+      - ConnectionStrings:Cache=${REDIS_CONN_STRING}
       - Authentication:Audience=${AUDIENCE}
       - Authentication:ValidIssuer=${ISSUER}
       - Authentication:MetadataUrl=${METADATAURL}
