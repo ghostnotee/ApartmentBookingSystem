@@ -30,22 +30,26 @@ namespace Bookify.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
-        services.AddTransient<IDateTimeProvider, DateTimeProvider>(); // or AddSingleton
-        services.AddTransient<IEmailService, EmailService>();
+        serviceCollection.AddTransient<IDateTimeProvider, DateTimeProvider>(); // or AddSingleton
+        serviceCollection.AddTransient<IEmailService, EmailService>();
 
-        AddPersistence(services, configuration);
-        AddAuthentication(services, configuration);
-        AddAuthorization(services);
-        AddCaching(services, configuration);
-        return services;
+        AddPersistence(serviceCollection, configuration);
+        AddAuthentication(serviceCollection, configuration);
+        AddAuthorization(serviceCollection);
+        AddCaching(serviceCollection, configuration);
+        AddHealthChecks(serviceCollection, configuration);
+        return serviceCollection;
     }
 
     private static void AddPersistence(IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("Database") ?? throw new ArgumentNullException(nameof(configuration));
-        services.AddDbContext<ApplicationDbContext>(optionsBuilder => { optionsBuilder.UseNpgsql(connectionString).UseSnakeCaseNamingConvention(); });
+        services.AddDbContext<ApplicationDbContext>(optionsBuilder =>
+        {
+            optionsBuilder.UseNpgsql(connectionString).UseSnakeCaseNamingConvention();
+        });
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IApartmentRepository, ApartmentRepository>();
         services.AddScoped<IBookingRepository, BookingRepository>();
@@ -53,6 +57,7 @@ public static class DependencyInjection
         services.AddSingleton<ISqlConnectionFactory>(_ => new SqlConnectionFactory(connectionString));
         SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
     }
+
     private static void AddAuthentication(IServiceCollection services, IConfiguration configuration)
     {
         services
@@ -90,5 +95,13 @@ public static class DependencyInjection
         var connectionString = configuration.GetConnectionString("Cache") ?? throw new ArgumentNullException(nameof(configuration));
         serviceCollection.AddStackExchangeRedisCache(options => options.Configuration = connectionString);
         serviceCollection.AddSingleton<ICacheService, CacheService>();
+    }
+
+    private static void AddHealthChecks(IServiceCollection serviceCollection, IConfiguration configuration)
+    {
+        serviceCollection
+            .AddHealthChecks().AddNpgSql(configuration.GetConnectionString("Database")!)
+            .AddRedis(configuration.GetConnectionString("Cache")!)
+            .AddUrlGroup(new Uri(configuration["Keycloak:BaseUrl"]!), HttpMethod.Get, "keycloak");
     }
 }
