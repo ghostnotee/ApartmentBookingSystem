@@ -7,7 +7,7 @@ namespace Bookify.Api.Controllers.Apartments;
 
 [Authorize]
 [ApiController]
-[Route("api/apartments")]
+[Route("api/v{version:apiVersion}/apartments")]
 public class ApartmentsController(ISender sender) : ControllerBase
 {
     [HttpGet]
