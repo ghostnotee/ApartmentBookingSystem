@@ -8,8 +8,8 @@ namespace Bookify.Api.Controllers.Bookings;
 
 [Authorize]
 [ApiController]
-[Route("api/bookings")]
-public class BookingsController : ControllerBase
+[Route("api/v{version:apiVersion}/bookings")]
+public class  BookingsController : ControllerBase
 {
     private readonly ISender _sender;
 
