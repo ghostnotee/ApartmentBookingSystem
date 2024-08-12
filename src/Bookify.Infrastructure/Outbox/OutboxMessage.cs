@@ -1,3 +1,4 @@
+// ReSharper disable EntityFramework.ModelValidation.UnlimitedStringLength
 namespace Bookify.Infrastructure.Outbox;
 
 public class OutboxMessage
