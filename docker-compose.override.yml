@@ -20,5 +20,7 @@
       - Serilog:WriteTo:1:Name=${SEQ_SERVER_NAME}
       - Serilog:WriteTo:1:Args:serverUrl=${SEQ_SERVER_URL}
       - Serilog:Enrich:1=${SEQ_SERVER_ENRICH}
+      - Outbox:IntervalInSeconds=${QUARTZ_INTERVAL_IN_SECONDS}
+      - Outbox:BatchSize=${BATCH_SIZE}
     ports:
       - "5092:80"
