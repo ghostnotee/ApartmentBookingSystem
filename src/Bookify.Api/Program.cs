@@ -31,7 +31,7 @@ var app = builder.Build();
                 var name = description.GroupName.ToUpperInvariant();
                 options.SwaggerEndpoint(url, name);
             }
-        });
+        }); 
         app.ApplyMigrations();
         //app.SeedData();
     }
