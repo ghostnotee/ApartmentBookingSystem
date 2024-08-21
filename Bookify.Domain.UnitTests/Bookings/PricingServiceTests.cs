@@ -23,4 +23,22 @@ public class PricingServiceTests
         // Assert
         pricingDetails.TotalPrice.Should().Be(expectedTotalPrice);
     }
+    
+    [Fact]
+    public void CalculatePrice_Should_ReturnCorrectTotalPrice_WhenCleaningFeeIsIncluded()
+    {
+        // Arrange
+        var price = new Money(10.0m, Currency.Try);
+        var cleaningFee = new Money(99.99m, Currency.Try);
+        var period = DateRange.Create(new DateOnly(2024,1,1), new DateOnly(2024,1,10));
+        var expectedTotalPrice = price with { Amount = price.Amount * period.LengthInDays + cleaningFee.Amount };
+        var apartment = ApartmentData.Create(price, cleaningFee);
+        var pricingService = new PricingService();
+
+        // Act
+        var pricingDetails = pricingService.CalculatePrice(apartment, period);
+
+        // Assert
+        pricingDetails.TotalPrice.Should().Be(expectedTotalPrice);
+    }
 }
