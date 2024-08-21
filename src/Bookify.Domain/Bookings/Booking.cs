@@ -79,9 +79,7 @@ public sealed class Booking : Entity
     public Result Confirm(DateTime utcNow)
     {
         if (Status != BookingStatus.Reserved)
-        {
             return Result.Failure(BookingErrors.NotReserved);
-        }
 
         Status = BookingStatus.Confirmed;
         ConfirmedOnUtc = utcNow;
@@ -92,9 +90,7 @@ public sealed class Booking : Entity
     public Result Reject(DateTime utcNow)
     {
         if (Status != BookingStatus.Reserved)
-        {
             return Result.Failure(BookingErrors.NotReserved);
-        }
 
         Status = BookingStatus.Rejected;
         RejectedOnUtc = utcNow;
@@ -105,9 +101,7 @@ public sealed class Booking : Entity
     public Result Commplete(DateTime utcNow)
     {
         if (Status != BookingStatus.Confirmed)
-        {
             return Result.Failure(BookingErrors.NotConfirmed);
-        }
 
         Status = BookingStatus.Completed;
         CompletedOnUtc = utcNow;
