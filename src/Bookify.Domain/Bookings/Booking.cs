@@ -98,7 +98,7 @@ public sealed class Booking : Entity
         return Result.Success();
     }
 
-    public Result Commplete(DateTime utcNow)
+    public Result Complete(DateTime utcNow)
     {
         if (Status != BookingStatus.Confirmed)
             return Result.Failure(BookingErrors.NotConfirmed);
