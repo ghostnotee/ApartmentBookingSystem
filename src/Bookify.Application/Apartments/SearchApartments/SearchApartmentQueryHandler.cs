@@ -69,7 +69,7 @@ internal sealed class SearchApartmentQueryHandler : IQueryHandler<SearchApartmen
                 request.EndDate,
                 ActiveBookingStatuses
             },
-            splitOn:"Country");
+            splitOn: "Country");
 
         return apartments.ToList();
     }

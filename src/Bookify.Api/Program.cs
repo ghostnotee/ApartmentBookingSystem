@@ -31,9 +31,9 @@ var app = builder.Build();
                 var name = description.GroupName.ToUpperInvariant();
                 options.SwaggerEndpoint(url, name);
             }
-        }); 
+        });
         app.ApplyMigrations();
-        //app.SeedData();
+        app.SeedData();
     }
 
     app.UseHttpsRedirection();
@@ -49,3 +49,5 @@ var app = builder.Build();
     });
     app.Run();
 }
+
+public partial class Program;
