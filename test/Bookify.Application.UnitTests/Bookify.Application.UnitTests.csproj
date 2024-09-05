@@ -25,11 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Using Include="Xunit"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\src\Bookify.Application\Bookify.Application.csproj" />
+      <ProjectReference Include="..\..\src\Bookify.Application\Bookify.Application.csproj" />
     </ItemGroup>
 
 </Project>

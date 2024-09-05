@@ -33,7 +33,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\Bookify.Api\Bookify.Api.csproj" />
+      <ProjectReference Include="..\..\src\Bookify.Application\Bookify.Application.csproj" />
+      <ProjectReference Include="..\..\src\Bookify.Infrastructure\Bookify.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\src\Bookify.Api\Bookify.Api.csproj" />
     </ItemGroup>
 
     <ItemGroup>
