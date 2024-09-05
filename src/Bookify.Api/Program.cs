@@ -33,7 +33,7 @@ var app = builder.Build();
             }
         });
         app.ApplyMigrations();
-        app.SeedData();
+        //app.SeedData();
     }
 
     app.UseHttpsRedirection();
